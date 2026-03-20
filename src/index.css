@@ -1,0 +1,15 @@
+/* Reset básico para que MUI tome control del diseño */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  background-color: #f0f0f0;
+}
+
+#root {
+  min-height: 100vh;
+}
