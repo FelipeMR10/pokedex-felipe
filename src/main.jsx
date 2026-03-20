@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import App from './App.jsx'
 import './index.css'
@@ -24,14 +24,18 @@ const queryClient = new QueryClient({
  * Punto de entrada de la aplicación PokéDex Felipe.
  * Envolvemos la app con:
  * 1. QueryClientProvider → habilita React Query en toda la app
- * 2. BrowserRouter → habilita React Router para navegación entre páginas
+ * 2. HashRouter → habilita React Router para navegación entre páginas.
+ *    Usamos HashRouter (en lugar de BrowserRouter) porque GitHub Pages es un
+ *    servidor de archivos estáticos y no soporta el History API del navegador.
+ *    HashRouter usa el símbolo "#" en la URL (ej: /#/pokemon/pikachu) para que
+ *    GitHub Pages no intente buscar esa ruta en el servidor.
  */
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+      <HashRouter>
         <App />
-      </BrowserRouter>
+      </HashRouter>
     </QueryClientProvider>
   </StrictMode>,
 )
